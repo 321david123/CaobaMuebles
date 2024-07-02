@@ -1,0 +1,146 @@
+#map {
+  height: 580px; /* Altura del contenedor */
+}
+
+/* Estilos para el botón de centrar mapa */
+
+/* Estilos para la fuente */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.aside {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  padding: 20px;
+  color: white;
+}
+
+.store-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  align-items: center;
+}
+
+.store-details h3 {
+  margin-bottom: 0;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+.aside img {
+  max-height: 150px;
+}
+
+.header1 {
+  grid-area: header1;
+  background-color: white;
+  display: grid;
+  place-items: center;
+}
+
+.header2 {
+  grid-area: header2;
+}
+
+.aside {
+  grid-area: aside;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.caja {
+  display: grid;
+  grid-template:
+    "header2 header2" 50px
+    "header1 header1" 60px
+    "aside main" 580px
+    "footer footer" 210px / 35% auto;
+}
+.gm-style-iw a:focus {
+  outline: none;
+}
+
+
+/* Estilos para pantallas con un ancho menor a 992px (tablets y smartphones) */
+@media (max-width: 851px) {
+  .caja {
+    grid-template:
+      "header2 header2" 50px
+      "header1 header1" 60px
+      "main main" 580px
+      "aside aside" auto
+      "footer footer" 210px / auto;
+  }
+
+  .header2-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .store-info {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .store-info img {
+    height: 200px;
+  }
+}
+/* Estilos para las ventanas de información */
+.gm-style .gm-style-iw {
+  font-family: Arial, sans-serif;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.gm-style-iw h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.gm-style-iw p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.gm-style-iw a {
+  color: #1a73e8;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.gm-style-iw a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para pantallas con un ancho menor a 768px (smartphones) */
+@media (max-width: 767px) {
+  .header2-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  #changing-text {
+    display: none;
+  }
+
+  .store-info img {
+    height: 150px;
+  }
+}

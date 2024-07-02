@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../img/logo.png" />
+  <title>Ubicación - Leo Muebles</title>
+  <link rel="stylesheet" href="../../../styles.css">
+   <link rel="stylesheet" href="ubicacion.css">
+
+   <link rel="stylesheet" href="./normalize.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+    /> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Noto+Sans:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      a{
+        list-style: none;
+        text-decoration: none;
+        color: white;
+      }
+    </style>
+</head>
+
+<body class="caja" onload="initMap();">
+  <header class="header2 bg-dark">
+    <div class="container">
+      <div class="header2-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center;">
+        <div class="text-start">
+          <a href="https://www.facebook.com/Muebles.Leo.Cortazar/" target="_blank" class="text-white me-3">
+            <i class="bi bi-facebook fs-3"></i>
+          </a>
+          <a href="https://wa.me/1234567890" target="_blank" class="text-white">
+            <i class="bi bi-whatsapp fs-3"></i>
+          </a>
+        </div>
+        <div class="text-center">
+          <span class="text-white" id="changing-text">Tenemos servicio a domicilio</span>
+        </div>
+        <div class="text-end">
+          <span class="text-white"><a href="../../links/html/historia.html">Conocenos</a></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <header class="header1"><h1>SUCURSALES</h1></header>
+    <aside class="aside bg-dark">
+      <div class="store-info" id="store-5demayo">
+        <div class="store-details">
+          <h3>Sucursal en la 5 de Mayo</h3>
+          <p>5 de Mayo 235, Centro, 38300 Cortazar, Gto.</p>
+          
+        </div>
+        <img src="../../img/sucu5mayo.jpg" alt="Imagen de la tienda 1">
+      </div>
+    
+      <div class="store-info" id="store-boulevard">
+        <div class="store-details">
+          <h3>Sucursal en el Boulevard</h3>
+          <p>Blvd Paseo De La Juventud #103 Cortazar, Gto.  
+          </p>
+        </div>
+        <img src="../../img/sucuB.jpg" alt="Imagen de la tienda 2">
+      </div>
+    
+      <div class="store-info" id="store-aldama">
+        <div class="store-details">
+          <h3>Sucursal de la Aldama</h3>
+          <p>Aldama 217, Centro, 38300 Cortazar, Gto.</p>
+        </div>
+        <img src="../../img/sucu1.jpg" alt="Imagen de la tienda 3">
+      </div>
+    </aside>
+    <main class="main">
+      <div  id="map"></div>
+    
+    </main>
+  <footer class="footer bg-dark text-white py-4 mt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>LEO MUEBLES</h4>
+          <p>Tu hogar, tu estilo, nuestros muebles</p>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <p class="mb-0">Síguenos en:</p>
+          <a href="https://www.facebook.com/Muebles.Leo.Cortazar/" target="_blank" class="ms-3">
+            <i class="bi bi-facebook fs-3 text-white"></i>
+          </a>
+          <a href="https://wa." target="_blank" class="ms-3">
+            <i class="bi bi-whatsapp fs-3 text-white"></i>
+          </a>
+        </div>
+      </div>
+      <hr class="bg-white" />
+      <div class="row">
+        <div class="col-md-6">
+          <p>&copy; 2023 Leo Muebles. Todos los derechos reservados.</p>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+          <p class="mb-0">Política de privacidad</p>
+          <p class="mb-0 ms-3">Términos y condiciones</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+
+
+
+
+  
+
+  
+</body>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNARvBFe3XzH0kXc3uFpzY4aCn0dpQqZQ&callback=initMap"></script>
+    <script>
+      var map;
+      var infoWindows = [];
+      var markers = [];
+      
+      function initMap() {
+        var muebleriaLeo = { lat: 20.4838444, lng: -100.9689502 };
+        var muebleriaAldama = { lat: 20.484119, lng: -100.964993 };
+        var muebleria5demayo = { lat: 20.4825455, lng: -100.9658497 };
+      
+        var mapOptions = {
+          zoom: 16,
+          center: muebleria5demayo,
+          styles: [
+            {
+              featureType: 'poi.business',
+              elementType: 'labels',
+              stylers: [{ visibility: 'off' }]
+            }
+          ]
+        };
+      
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      
+        createMarker(map, muebleriaLeo, 'Mueblería Leo boulevard', 'Tenemos todo lo que necesitas para amueblar tu hogar.', 'https://goo.gl/maps/oWR2RF3TxBRaBYxd6', 'Obten la ruta de la tienda del boulevard');
+        createMarker(map, muebleria5demayo, 'Mueblería Leo 5 de mayo', 'Visítanos en la 5 de mayo.', 'https://goo.gl/maps/8vrWth98TijArguy6?coh=178572&entry=tt', 'Visita la tienda en la 5 de mayo');
+        createMarker(map, muebleriaAldama, 'Mueblería Leo Aldama', 'Visítanos también en nuestra sucursal de Aldama.', 'https://goo.gl/maps/mr9n2fdnWJX2QroV9', 'Visita la tienda en la aldama');
+      
+        document.getElementById("store-5demayo").addEventListener("click", function () {
+          focusMarker(1);
+          scrollToMap();
+        });
+        document.getElementById("store-boulevard").addEventListener("click", function () {
+          focusMarker(0);
+          scrollToMap();
+        });
+        document.getElementById("store-aldama").addEventListener("click", function () {
+          focusMarker(2);
+          scrollToMap();
+        });
+      }
+      
+      function createMarker(map, position, title, description, linkUrl, linkText) {
+        var marker = new google.maps.Marker({
+          position: position,
+          title: title,
+          map: map
+        });
+      
+        var infoWindowContent =
+          '<h3>' + title + '</h3>' +
+          '<p>' + description + '</p>' +
+          '<p><a href="' + linkUrl + '" target="_blank">' + linkText + '</a></p>';
+      
+        var infoWindow = new google.maps.InfoWindow({
+          content: infoWindowContent
+        });
+      
+        marker.addListener('click', function () {
+          infoWindow.open(map, marker);
+        });
+      
+        infoWindows.push(infoWindow);
+        markers.push(marker);
+      }
+      
+      function focusMarker(index) {
+        if (markers[index] && infoWindows[index]) {
+          infoWindows.forEach(function (infoWindow) {
+            infoWindow.close();
+          });
+      
+          map.setCenter(markers[index].getPosition());
+      
+          // Aumenta el nivel de zoom
+          map.setZoom(18);
+      
+          infoWindows[index].open(map, markers[index]);
+        }
+      }
+      
+      function scrollToMap() {
+  if (window.innerWidth <= 800 && window.innerHeight <= 600) {
+    var mapElement = document.getElementById('map');
+    window.scrollTo({
+      top: mapElement.offsetTop,
+      behavior: 'smooth'
+    });
+  }
+}
+
+      
+      document.addEventListener("DOMContentLoaded", function() {
+        changeText();
+      });
+      
+      function changeText() {
+        var messages = [
+          "Tenemos servicio a domicilio",
+          "Promociones sujetas a términos y condiciones",
+          "Visítanos hoy para conocer nuestras ofertas"
+        ];
+        var currentIndex = 0;
+        var changingTextElement = document.getElementById("changing-text");
+      
+        function updateText() {
+          changingTextElement.classList.remove("fade-in");
+          changingTextElement.classList.add("fade-out");
+      
+          setTimeout(function() {
+            currentIndex = (currentIndex + 1) % messages.length;
+            changingTextElement.textContent = messages[currentIndex];
+            changingTextElement.classList.remove("fade-out");
+            changingTextElement.classList.add("fade-in");
+          }, 200);
+        }
+      
+        setInterval(updateText, 6000);
+        updateText();
+      }
+      </script>
+      
+
+</html>
